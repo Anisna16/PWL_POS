@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
+    <head>
+        <title>Data User</title>
+    </head>
     <body>
-        <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Box</title>
-</head>
-<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <div style="width: 300px; padding: 20px; border: 1px solid #000; text-align: center;">
         <h1>Data User</h1>
-        <p>Jumlah Pengguna</p>
-    </div>
+        <table border="1" cellpadding="2" cellspacing="0">
+            <tr>
+                <td>Jumlah Pengguna</td>
+            </tr>
+            <tr>
+                <td>{{$user->username}}</td>
+            </tr>
+        </table>
     </body>
 </html>

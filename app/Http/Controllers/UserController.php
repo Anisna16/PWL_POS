@@ -10,8 +10,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        $userCount=UserModel::where('username', 2)->count();
+        $user=UserModel::firstOrCreate(
+            [
+                'username' => 'manager',
+                'nama' => 'Manager',
+            ],
+        );
         
-        return view('user', ['userCount' => $userCount]);
+        return view('user', ['data' => $user]);
     }
 }
