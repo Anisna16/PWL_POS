@@ -8,22 +8,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function hapus($id)
     {
-        $user=UserModel::create(
-            [
-                'username' => 'manager21',
-                'nama' => 'Manager21',
-                'password' => Hash::make(12345),
-                'level_id' => 2
-            ],
-        );
-        $user->username = 'manager22';
+        $user=UserModel::find($id);
+        $user->delete();
 
-        $user->wasChanged();
-        $user->wasChanged('username');
-        $user->wasChanged('username', 'level_id');
-        $user->wasChanged(['nama']);
-        dd($user->wasChanged(['nama', 'username']));
+        return redirect ('/user');
     }
 }
