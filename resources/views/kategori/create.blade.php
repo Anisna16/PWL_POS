@@ -27,7 +27,18 @@
                     </div>
                 </div>
 
+                <div class="card-header">Manage Kategori  
+                    <a href="../public/kategori/create" class="form-control" id="namaKategori" name="namaKategori" placeholder>
+                </div>
+            </div>
+
                 <div class="=card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+            </div>
+
+            <div class="=card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
