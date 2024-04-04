@@ -27,11 +27,13 @@ class UserController extends Controller
         return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
 
+    // Ambil data user dalam bentuk json untuk datatables
     public function list(Request $request)
     {
         $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
         ->with('level');
 
+        // Filter data user berdasarkan level_id
         if($request->level_id){
             $users->where('level_id', $request->level_id);
         }
@@ -162,4 +164,23 @@ class UserController extends Controller
             return redirect('/user')->with('error', 'Data user gagal dihapus karena masih terdapat tabel lain yang terikat dengan data ini');
         }
     }
+
+    /* Menampilkan halaman awal user
+    public function index()
+    {
+        $breadcrumb = (object)[
+            'title' => 'Daftar User',
+            'list' => ['Home', 'User']
+        ];
+
+        $page = (object) [
+            'title' => 'Daftar user yang terdaftar dalam sistem'
+        ];
+
+        $activeMenu = 'user'; // set menu yang sedang aktif
+
+        $level = LevelModel::all();
+
+        return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+    }*/
 }
