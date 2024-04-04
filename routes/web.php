@@ -1,20 +1,26 @@
 <?php
 
+use App\Http\Controllers\KategoriContorller;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LevelContorller;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\UserContorller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use Database\Seeders\LevelSeeder;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
-Route::get('/kategori', [KategoriController::class, 'index']);
-Route::get('/kategori', [KategoriController::class, 'index']);
-Route::get('/kategori/create', [KategoriController::class, 'create']);
-Route::post('/kategori', [KategoriController::class, 'store']);
+Route::get('/',[WelcomeController::class, 'index']);
 
-Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit']);
-Route::put('/kategori/{id}/edit', [KategoriController::class, 'update']);
-Route::delete('/kategori/{id}/delete', [KategoriController::class, 'delete']);
+Route::group(['prefix' => 'user'], function (){
+Route::get('/', [UserController::class, 'index']);
+Route::post('/list', [UserController::class, 'list']);
+Route::get('/create', [UserController::class, 'create']);
+Route::post('/', [UserController::class, 'store']);
+Route::get('/{id}', [UserController::class, 'show']); // Menampilkan detail user
+Route::get('/{id}/edit', [UserController::class, 'edit']); // Menampilkan halaman form edit user
+Route::put('/{id}', [UserController::class, 'update']); // Menyimpan perubahan data user
+Route::delete('/{id}', [UserController::class, 'destroy']);
 
-Route::get('/', [WelcomeController::class,'index']);
+});
