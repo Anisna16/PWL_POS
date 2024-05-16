@@ -6,9 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class UserModel extends Model
+class UserModel extends Authenticatable implements JWTSubject
 {
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
     use HasFactory;
 
     protected $table = 'm_user';
@@ -18,7 +30,7 @@ class UserModel extends Model
 
     public function setPasswordAttribued($value)
     {
-        $this->attributes['password']=Hash::make($value);
+        $this->attributes['password'] = Hash::make($value);
     }
 
     public function level(): BelongsTo
